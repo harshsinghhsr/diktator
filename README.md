@@ -5,7 +5,7 @@
 Speech recognition and rewriting run entirely on your computer. There is no account, no cloud service, and nothing you say or write leaves your device. Diktator is a free, open-source alternative to Wispr Flow, Superwhisper and built-in dictation, powered by local AI models (NVIDIA Parakeet speech-to-text and a Qwen language model).
 
 <p align="center">
-  <a href="docs/media/diktator-demo.mp4"><img src="docs/media/diktator-demo.gif" alt="Diktator demo: spoken words with filler and a self-correction become clean text in an email" width="800"></a>
+  <a href="docs/media/diktator-demo.mp4"><img src="docs/media/diktator-demo.gif" alt="Diktator demo: spoken words with filler and a self-correction become clean text, then dictation into Slack, Teams, Notes and VS Code" width="800"></a>
   <br>
   <sub><a href="docs/media/diktator-demo.mp4">Watch the full demo video</a> · <a href="https://github.com/harshsinghhsr/diktator/releases/latest">Download for macOS</a></sub>
 </p>
