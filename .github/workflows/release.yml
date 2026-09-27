@@ -11,7 +11,7 @@ jobs:
       matrix:
         include:
           - os: macos-14
-            args: --target aarch64-apple-darwin --bundles dmg
+            args: --target universal-apple-darwin --bundles dmg
           - os: windows-2022
             args: --bundles nsis
     runs-on: ${{ matrix.os }}
@@ -23,21 +23,31 @@ jobs:
           cache: npm
       - uses: dtolnay/rust-toolchain@stable
         with:
-          targets: ${{ matrix.os == 'macos-14' && 'aarch64-apple-darwin' || '' }}
+          targets: ${{ matrix.os == 'macos-14' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
       - uses: Swatinem/rust-cache@v2
         with:
           workspaces: src-tauri
       - run: npm ci
-      - uses: tauri-apps/tauri-action@v0
+      # macOS signing + notarisation: exported only if the secrets exist, since
+      # tauri tries to import a certificate even when APPLE_CERTIFICATE is empty.
+      # Without them the app is signed ad-hoc.
+      - if: matrix.os == 'macos-14'
+        shell: bash
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # macOS signing + notarisation: used only if the secrets exist.
           APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
           APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
           APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
           APPLE_ID: ${{ secrets.APPLE_ID }}
           APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          for v in APPLE_CERTIFICATE APPLE_CERTIFICATE_PASSWORD APPLE_SIGNING_IDENTITY APPLE_ID APPLE_PASSWORD APPLE_TEAM_ID; do
+            if [ -n "${!v}" ]; then echo "$v=${!v}" >> "$GITHUB_ENV"; fi
+          done
+          if [ -z "$APPLE_SIGNING_IDENTITY" ]; then echo "APPLE_SIGNING_IDENTITY=-" >> "$GITHUB_ENV"; fi
+      - uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tagName: ${{ github.ref_name }}
           releaseName: Diktator ${{ github.ref_name }}
