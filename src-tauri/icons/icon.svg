@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!-- tile -->
+  <rect x="116" y="116" width="808" height="808" rx="184" fill="#1e1b18"/>
+  <rect x="100" y="100" width="808" height="808" rx="184" fill="#f2675c" stroke="#1e1b18" stroke-width="24"/>
+
+  <g stroke="#1e1b18" stroke-width="28" stroke-linecap="round" stroke-linejoin="round">
+    <!-- mic holder + stand -->
+    <path d="M318 572 V600 A190 190 0 0 0 698 600 V572" fill="none"/>
+    <path d="M508 790 V846 M408 850 H608" fill="none"/>
+    <!-- mic body -->
+    <rect x="388" y="372" width="240" height="350" rx="120" fill="#fffaf4"/>
+    <path d="M436 520 H580 M436 580 H580 M436 640 H580" fill="none" stroke-width="22"/>
+
+    <!-- officer's cap, tilted -->
+    <g transform="rotate(-9 508 360)">
+      <path d="M380 334 C354 304 284 296 274 258 C266 214 396 192 508 192 C620 192 750 214 742 258 C732 296 662 304 636 334 Z" fill="#5d6b3c"/>
+      <rect x="376" y="326" width="264" height="82" rx="10" fill="#1e1b18"/>
+      <path d="M392 358 H624" stroke="#ffd966" stroke-width="12" fill="none"/>
+      <path d="M380 404 Q508 426 636 404 L662 426 Q508 486 354 426 Z" fill="#1e1b18"/>
+      <path d="M508 222 L522 256 L558 258 L530 280 L540 314 L508 294 L476 314 L486 280 L458 258 L494 256 Z" fill="#ffd966" stroke-width="12"/>
+    </g>
+  </g>
+</svg>

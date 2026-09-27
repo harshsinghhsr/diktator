@@ -1,0 +1,21 @@
+# Dependencies and build output
+node_modules
+dist
+dist-ssr
+/src-tauri/target
+
+# Models downloaded for tests (scripts/fetch-test-models.sh)
+/test-models
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Editors and OS
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.local
+*.sw?
